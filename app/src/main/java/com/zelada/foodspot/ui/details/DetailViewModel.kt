@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 data class DetailState(
-    val restaurant: Restaurant? = null
+    val restaurant: Restaurant? = null,
+    val cartCount: Int = 0  //extra para usar contador de carrito
 )
-
 
 class DetailViewModel(
     private val repository: FoodRepository,
@@ -27,7 +27,11 @@ class DetailViewModel(
     private fun loadRestaurant() {
         val restaurant = repository.getRestaurants()
             .firstOrNull { it.id == restaurantId }
-
         _state.value = _state.value.copy(restaurant = restaurant)
+    }
+
+
+    fun addToCart() {
+        _state.value = _state.value.copy(cartCount = _state.value.cartCount + 1)
     }
 }

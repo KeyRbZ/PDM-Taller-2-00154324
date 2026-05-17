@@ -7,11 +7,11 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.zelada.foodspot.data.FoodRepositoryImpl
+import com.zelada.foodspot.ui.cart.CartScreen
 import com.zelada.foodspot.ui.details.RestaurantDetailScreen
 import com.zelada.foodspot.ui.resaturants.RestaurantListScreen
 import com.zelada.foodspot.ui.screens.SearchScreen
 import kotlinx.serialization.Serializable
-
 
 sealed class AppDestination : NavKey {
 
@@ -23,13 +23,15 @@ sealed class AppDestination : NavKey {
 
     @Serializable
     data object Search : AppDestination()
+
+    @Serializable
+    data object Cart : AppDestination()
 }
 
 @Composable
 fun FoodSpotNavigation() {
     val repository = remember { FoodRepositoryImpl() }
 
-    // mutableStateListOf: lista observable por Compose
     val backStack = remember {
         mutableStateListOf<Any>(AppDestination.RestaurantList)
     }
@@ -47,6 +49,9 @@ fun FoodSpotNavigation() {
                         },
                         onSearchClick = {
                             backStack.add(AppDestination.Search)
+                        },
+                        onCartClick = {
+                            backStack.add(AppDestination.Cart)
                         }
                     )
                 }
@@ -54,7 +59,10 @@ fun FoodSpotNavigation() {
                     RestaurantDetailScreen(
                         repository = repository,
                         restaurantId = key.restaurantId,
-                        onBack = { backStack.removeLastOrNull() }
+                        onBack = { backStack.removeLastOrNull() },
+                        onCartClick = {
+                            backStack.add(AppDestination.Cart)
+                        }
                     )
                 }
                 is AppDestination.Search -> NavEntry(key) {
@@ -63,6 +71,11 @@ fun FoodSpotNavigation() {
                         onRestaurantClick = { restaurantId ->
                             backStack.add(AppDestination.RestaurantDetail(restaurantId))
                         },
+                        onBack = { backStack.removeLastOrNull() }
+                    )
+                }
+                is AppDestination.Cart -> NavEntry(key) {
+                    CartScreen(
                         onBack = { backStack.removeLastOrNull() }
                     )
                 }

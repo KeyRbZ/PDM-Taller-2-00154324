@@ -8,9 +8,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -19,11 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.zelada.foodspot.data.CartRepository
 import com.zelada.foodspot.data.FoodRepository
 import com.zelada.foodspot.model.Restaurant
 import androidx.compose.material3.ExperimentalMaterial3Api
-
-
 
 val PrimaryPurple = Color(0xFF6B4EFF)
 val LightGray = Color(0xFFF5F5F5)
@@ -33,10 +32,13 @@ val LightGray = Color(0xFFF5F5F5)
 fun RestaurantListScreen(
     repository: FoodRepository,
     onRestaurantClick: (Int) -> Unit,
-    onSearchClick: () -> Unit
+    onSearchClick: () -> Unit,
+    onCartClick: () -> Unit
 ) {
     val viewModel = remember(repository) { RestaurantListViewModel(repository) }
     val state by viewModel.state.collectAsState()
+
+    val cartItems by CartRepository.items.collectAsState()
 
     Scaffold(
         topBar = {
@@ -50,6 +52,22 @@ fun RestaurantListScreen(
                     )
                 },
                 actions = {
+                    BadgedBox(
+                        badge = {
+                            if (cartItems.isNotEmpty()) {
+                                Badge { Text(cartItems.size.toString()) }
+                            }
+                        }
+                    ) {
+                        IconButton(onClick = onCartClick) {
+                            Icon(
+                                imageVector = Icons.Default.ShoppingCart,
+                                contentDescription = "Ver carrito",
+                                tint = PrimaryPurple
+                            )
+                        }
+                    }
+                    // Ícono de búsqueda
                     IconButton(onClick = onSearchClick) {
                         Icon(
                             imageVector = Icons.Default.Search,
@@ -90,9 +108,7 @@ fun CategorySection(
     restaurants: List<Restaurant>,
     onRestaurantClick: (Int) -> Unit
 ) {
-    Column(
-        modifier = Modifier.padding(bottom = 8.dp)
-    ) {
+    Column(modifier = Modifier.padding(bottom = 8.dp)) {
         Text(
             text = categoryName,
             fontSize = 18.sp,
@@ -100,7 +116,6 @@ fun CategorySection(
             color = PrimaryPurple,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
         )
-
         LazyRow(
             contentPadding = PaddingValues(horizontal = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -138,7 +153,6 @@ fun RestaurantCard(
                     .clip(RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)),
                 contentScale = ContentScale.Crop
             )
-
             Text(
                 text = restaurant.name,
                 fontWeight = FontWeight.SemiBold,
