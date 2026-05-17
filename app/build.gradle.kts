@@ -42,10 +42,11 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation("androidx.compose.material:material-icons-extended")
-    implementation("androidx.navigation3:navigation3-runtime:1.0.0-alpha04")
-    implementation("androidx.navigation3:navigation3-ui:1.0.0-alpha04")
     implementation("io.coil-kt.coil3:coil-compose:3.1.0")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.kotlinx.serialization.core)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
