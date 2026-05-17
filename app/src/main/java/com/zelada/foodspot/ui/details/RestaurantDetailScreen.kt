@@ -31,7 +31,7 @@ fun RestaurantDetailScreen(
     restaurantId: Int,
     onBack: () -> Unit
 ) {
-    val viewModel = rememberSaveable() { DetailViewModel(repository, restaurantId) }
+    val viewModel = remember() { DetailViewModel(repository, restaurantId) }
     val state by viewModel.state.collectAsState()
     val context = LocalContext.current
 

@@ -1,4 +1,4 @@
-package com.zelada.foodspot.ui.search
+package com.zelada.foodspot.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -31,7 +31,7 @@ fun SearchScreen(
     onRestaurantClick: (Int) -> Unit,
     onBack: () -> Unit
 ) {
-    val viewModel = remember { SearchViewModel(repository) }
+    val viewModel = remember(repository) { SearchViewModel(repository) }
     val state by viewModel.state.collectAsState()
 
     Scaffold(

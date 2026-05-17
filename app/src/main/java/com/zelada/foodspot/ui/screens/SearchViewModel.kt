@@ -1,4 +1,4 @@
-package com.zelada.foodspot.ui.search
+package com.zelada.foodspot.ui.screens
 
 import androidx.lifecycle.ViewModel
 import com.zelada.foodspot.data.FoodRepository

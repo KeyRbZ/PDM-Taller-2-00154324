@@ -22,8 +22,8 @@ import coil3.compose.AsyncImage
 import com.zelada.foodspot.data.FoodRepository
 import com.zelada.foodspot.model.Restaurant
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.tooling.preview.Preview
+
+
 
 val PrimaryPurple = Color(0xFF6B4EFF)
 val LightGray = Color(0xFFF5F5F5)
@@ -35,7 +35,7 @@ fun RestaurantListScreen(
     onRestaurantClick: (Int) -> Unit,
     onSearchClick: () -> Unit
 ) {
-    val viewModel = rememberSaveable() { RestaurantListViewModel(repository) }
+    val viewModel = remember(repository) { RestaurantListViewModel(repository) }
     val state by viewModel.state.collectAsState()
 
     Scaffold(

@@ -50,7 +50,7 @@ class FoodRepositoryImpl : FoodRepository {
             id = 2,
             name = "Pollo Loco",
             description = "Pollo asado al carbón con marinados especiales de la casa, directo a tu mesa.",
-            imageUrl = "https://images.unsplash.com/photo-1598103442097-8b74394b95c1?w=800",
+            imageUrl = "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=800",
             categories = listOf("Comida Rápida"),
             menu = listOf(
                 Dish(
@@ -144,7 +144,7 @@ class FoodRepositoryImpl : FoodRepository {
             id = 5,
             name = "Bella Pasta",
             description = "Pasta fresca hecha a mano todos los días, con salsas italianas de receta familiar.",
-            imageUrl = "https://images.unsplash.com/photo-1551183053-bf91798a11c2?w=800",
+            imageUrl = "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=800",
             categories = listOf("Italiana"),
             menu = listOf(
                 Dish(
@@ -185,13 +185,13 @@ class FoodRepositoryImpl : FoodRepository {
                     20,
                     "Nigiri Salmón",
                     "Arroz de sushi con lámina de salmón fresco",
-                    "https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600"
+                    "https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=600"
                 ),
                 Dish(
                     21,
                     "Roll California",
                     "Cangrejo, aguacate y pepino envuelto en arroz",
-                    "https://images.unsplash.com/photo-1617196034099-47c0f0c90f4f?w=600"
+                    "https://images.unsplash.com/photo-1564489563601-c53cfc451e93?w=600"
                 ),
                 Dish(
                     22,
@@ -298,7 +298,7 @@ class FoodRepositoryImpl : FoodRepository {
                     34,
                     "Macarons Variados",
                     "Selección de 6 macarons de distintos sabores",
-                    "https://images.unsplash.com/photo-1558326567-98166e232c52?w=600"
+                    "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=600"
                 ),
                 Dish(
                     35,

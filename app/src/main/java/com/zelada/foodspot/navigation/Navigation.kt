@@ -4,15 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateListOf
 import androidx.navigation3.runtime.NavKey
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.zelada.foodspot.data.FoodRepositoryImpl
 import com.zelada.foodspot.ui.details.RestaurantDetailScreen
-import com.zelada.foodspot.ui.details.RestaurantDetailScreen
 import com.zelada.foodspot.ui.resaturants.RestaurantListScreen
-import com.zelada.foodspot.ui.search.SearchScreen
+import com.zelada.foodspot.ui.screens.SearchScreen
 import kotlinx.serialization.Serializable
 
 
